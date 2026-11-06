@@ -1,0 +1,96 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ meta_title|default:"KrisCodeSolutions | We Build Websites and Apps" }}</title>
+  <meta name="description" content="{{ meta_description|default:'KrisCodeSolutions builds modern websites, web applications and digital solutions for businesses.' }}">
+  <meta name="theme-color" content="#101827">
+  <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KrisCodeSolutions">
+  <meta property="og:title" content="{{ meta_title|default:'KrisCodeSolutions | We Build Websites and Apps' }}">
+  <meta property="og:description" content="{{ meta_description|default:'KrisCodeSolutions builds modern websites, web applications and digital solutions for businesses.' }}">
+  <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+  <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'website/images/og-image.png' %}">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/svg+xml" href="{% static 'website/images/logo-mark.svg' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="{% static 'website/css/styles.css' %}">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="{% url 'website:home' %}" aria-label="KrisCodeSolutions home">
+        <img src="{% static 'website/images/logo-mark.svg' %}" alt="" width="40" height="40">
+        <span class="brand-text">Kris<span>Code</span>Solutions</span>
+      </a>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+        <span></span><span></span><span></span>
+      </button>
+
+      {% with current=request.resolver_match.url_name %}
+      <nav class="primary-nav" id="primary-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="{% url 'website:home' %}" class="{% if current == 'home' %}active{% endif %}" {% if current == 'home' %}aria-current="page"{% endif %}>Home</a></li>
+          <li><a href="{% url 'website:about' %}" class="{% if current == 'about' %}active{% endif %}" {% if current == 'about' %}aria-current="page"{% endif %}>About Us</a></li>
+          <li><a href="{% url 'website:services' %}" class="{% if current == 'services' %}active{% endif %}" {% if current == 'services' %}aria-current="page"{% endif %}>Services</a></li>
+          <li><a href="{% url 'website:projects' %}" class="{% if current == 'projects' %}active{% endif %}" {% if current == 'projects' %}aria-current="page"{% endif %}>Projects</a></li>
+          <li><a href="{% url 'website:contact' %}" class="{% if current == 'contact' %}active{% endif %}" {% if current == 'contact' %}aria-current="page"{% endif %}>Contact</a></li>
+          <li class="nav-cta"><a href="{% url 'website:contact' %}" class="btn btn-primary btn-sm">Let's Talk</a></li>
+        </ul>
+      </nav>
+      {% endwith %}
+    </div>
+  </header>
+
+  <main id="main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-about">
+        <a class="brand" href="{% url 'website:home' %}">
+          <img src="{% static 'website/images/logo-mark.svg' %}" alt="" width="40" height="40">
+          <span class="brand-text">Kris<span>Code</span>Solutions</span>
+        </a>
+        <p class="footer-tagline">We Build Websites and Apps.</p>
+        <p class="muted">We Build Digital Solutions That Move Businesses Forward.</p>
+        {% include "website/_social.html" %}
+      </div>
+      <div>
+        <h3 class="footer-title">Explore</h3>
+        <ul class="footer-links">
+          <li><a href="{% url 'website:home' %}">Home</a></li>
+          <li><a href="{% url 'website:about' %}">About Us</a></li>
+          <li><a href="{% url 'website:services' %}">Services</a></li>
+          <li><a href="{% url 'website:projects' %}">Projects</a></li>
+          <li><a href="{% url 'website:contact' %}">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-title">Get in touch</h3>
+        <ul class="footer-links">
+          <li><a href="{{ site.whatsapp_url }}" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp" aria-hidden="true"></i> {{ site.whatsapp_number }}</a></li>
+          <li><a href="mailto:{{ site.email }}"><i class="bi bi-envelope" aria-hidden="true"></i> {{ site.email }}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; {% now "Y" %} KrisCodeSolutions. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="{% static 'website/js/main.js' %}" defer></script>
+</body>
+</html>

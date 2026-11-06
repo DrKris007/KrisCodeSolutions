@@ -1,0 +1,20 @@
+{% if team_members %}
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our team</span>
+      <h2>Meet the Team</h2>
+    </div>
+    <div class="grid grid-3">
+      {% for member in team_members %}
+      <article class="card team-card reveal">
+        {% if member.image %}<img class="team-photo" src="{{ member.image.url }}" alt="{{ member.name }}" loading="lazy">{% else %}<div class="team-photo team-initial" aria-hidden="true">{{ member.name|slice:":1" }}</div>{% endif %}
+        <h3>{{ member.name }}</h3>
+        <p class="team-role">{{ member.role }}</p>
+        {% if member.bio %}<p>{{ member.bio }}</p>{% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}

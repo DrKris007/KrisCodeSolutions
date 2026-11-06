@@ -1,0 +1,42 @@
+{% extends "website/base.html" %}
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">About us</span>
+    <h1>About KrisCodeSolutions</h1>
+    <p class="lead">{{ site.about_description }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container about-grid">
+    <div class="about-visual reveal" aria-hidden="true">
+      <div class="about-panel">
+        <i class="bi bi-braces"></i>
+        <div class="about-row"><i class="bi bi-window-desktop"></i><span></span></div>
+        <div class="about-row"><i class="bi bi-phone"></i><span></span></div>
+        <div class="about-row"><i class="bi bi-cart3"></i><span></span></div>
+        <div class="about-row"><i class="bi bi-shield-check"></i><span></span></div>
+      </div>
+    </div>
+    <div class="about-copy">
+      <article class="card mv-card reveal">
+        <div class="service-icon"><i class="bi bi-rocket-takeoff" aria-hidden="true"></i></div>
+        <h2>Our Mission</h2>
+        <p>{{ site.mission }}</p>
+      </article>
+      <article class="card mv-card reveal">
+        <div class="service-icon"><i class="bi bi-eye" aria-hidden="true"></i></div>
+        <h2>Our Vision</h2>
+        <p>{{ site.vision }}</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+{% include "website/_team.html" %}
+{% include "website/_why_choose.html" %}
+{% include "website/_cta.html" %}
+
+{% endblock %}

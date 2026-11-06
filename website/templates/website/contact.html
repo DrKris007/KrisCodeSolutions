@@ -1,0 +1,55 @@
+{% extends "website/base.html" %}
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Contact</span>
+    <h1>Let's Talk About Your Project</h1>
+    <p class="lead">Tell us about your business and how we can help you grow digitally.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container contact-grid">
+    <div class="contact-info" id="contact-info">
+      <h2>Contact information</h2>
+      <ul class="contact-list">
+        <li>
+          <i class="bi bi-whatsapp" aria-hidden="true"></i>
+          <div><span class="muted">WhatsApp</span><a href="{{ site.whatsapp_url }}" target="_blank" rel="noopener noreferrer">{{ site.whatsapp_number }}</a></div>
+        </li>
+        <li>
+          <i class="bi bi-envelope" aria-hidden="true"></i>
+          <div><span class="muted">Email</span><a href="mailto:{{ site.email }}">{{ site.email }}</a></div>
+        </li>
+      </ul>
+      <h3>Follow us</h3>
+      {% include "website/_social.html" %}
+    </div>
+
+    <div class="contact-form-wrap" id="contact-form">
+      <h2>Send us a message</h2>
+
+      {% if messages %}
+      <div class="messages" role="status">
+        {% for message in messages %}
+        <div class="message message-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <form method="post" action="{% url 'website:contact' %}#contact-form" novalidate>
+        {% csrf_token %}
+        {% if form.non_field_errors %}<div class="message message-error">{{ form.non_field_errors }}</div>{% endif %}
+        {% include "website/_field.html" with field=form.full_name %}
+        {% include "website/_field.html" with field=form.email %}
+        {% include "website/_field.html" with field=form.subject %}
+        {% include "website/_field.html" with field=form.message %}
+        <div class="hp" aria-hidden="true">{{ form.website.label_tag }}{{ form.website }}</div>
+        <button type="submit" class="btn btn-primary">Send Message <i class="bi bi-send" aria-hidden="true"></i></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

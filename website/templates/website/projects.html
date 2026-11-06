@@ -1,0 +1,26 @@
+{% extends "website/base.html" %}
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Portfolio</span>
+    <h1>Projects We've Built &amp; Collaborated On</h1>
+    <p class="lead">Explore selected digital projects that demonstrate our approach to building functional, modern and user-focused digital experiences.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {% if projects %}
+    <div class="grid grid-2">
+      {% for project in projects %}{% include "website/_project_card.html" %}{% endfor %}
+    </div>
+    {% else %}
+    <p class="empty-state">No projects to show yet. Please check back soon.</p>
+    {% endif %}
+  </div>
+</section>
+
+{% include "website/_cta.html" %}
+
+{% endblock %}

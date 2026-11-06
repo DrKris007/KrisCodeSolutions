@@ -1,0 +1,95 @@
+{% extends "website/base.html" %}
+{% load static %}
+{% block content %}
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow pill"><span class="pulse" aria-hidden="true"></span>AVAILABLE FOR PROJECTS</span>
+      <h1>Building Digital Experiences That <span class="text-blue">Grow Your Business.</span></h1>
+      <p class="lead">We design and develop modern websites, web applications and digital solutions that help businesses establish their online presence, connect with customers and grow.</p>
+      <div class="btn-row">
+        <a href="{% url 'website:contact' %}" class="btn btn-primary">Start a Project</a>
+        <a href="{% url 'website:projects' %}" class="btn btn-outline">Explore Our Work</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="code-window">
+        <div class="code-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="code-file">business.py</span></div>
+        <pre><code><span class="c-k">class</span> <span class="c-f">YourBusiness</span>:
+    <span class="c-k">def</span> <span class="c-f">go_digital</span>(self):
+        site = Website(
+            responsive=<span class="c-v">True</span>,
+            secure=<span class="c-v">True</span>,
+        )
+        site.<span class="c-f">launch</span>()
+        <span class="c-k">return</span> <span class="c-s">"Growing online"</span></code></pre>
+      </div>
+      <div class="float-chip chip-1"><i class="bi bi-phone"></i> Mobile-ready</div>
+      <div class="float-chip chip-2"><i class="bi bi-shield-check"></i> Secure</div>
+      <div class="float-chip chip-3"><i class="bi bi-lightning-charge"></i> Fast</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">The challenge</span>
+      <h2>Your Business Deserves More Than Just an Online Presence.</h2>
+      <p>Many businesses struggle online because of problems like these:</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card problem-card reveal"><i class="bi bi-x-octagon" aria-hidden="true"></i><h3>No professional website</h3><p>Customers cannot find or trust a business without a credible online home.</p></div>
+      <div class="card problem-card reveal"><i class="bi bi-emoji-frown" aria-hidden="true"></i><h3>Poor user experience</h3><p>Confusing layouts and clutter push visitors away before they get in touch.</p></div>
+      <div class="card problem-card reveal"><i class="bi bi-phone-flip" aria-hidden="true"></i><h3>Not mobile-friendly</h3><p>Websites that do not work properly on mobile devices lose many visitors.</p></div>
+      <div class="card problem-card reveal"><i class="bi bi-people" aria-hidden="true"></i><h3>Difficulty reaching customers</h3><p>Without a strong online presence it is hard to connect with new customers.</p></div>
+      <div class="card problem-card reveal"><i class="bi bi-hourglass-split" aria-hidden="true"></i><h3>Slow and outdated websites</h3><p>Slow, dated websites frustrate visitors and weaken your brand.</p></div>
+      <div class="card problem-card reveal"><i class="bi bi-wrench-adjustable" aria-hidden="true"></i><h3>No ongoing support</h3><p>Websites need regular updates and help to keep working well.</p></div>
+    </div>
+    <p class="statement reveal">At KrisCodeSolutions, we turn these challenges into digital opportunities.</p>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">What we do</span>
+      <h2>Digital Services Built Around Your Business</h2>
+    </div>
+    {% if services %}
+    <div class="grid grid-3">
+      {% for service in services %}{% include "website/_service_card.html" %}{% endfor %}
+    </div>
+    {% else %}
+    <p class="empty-state">Our services will be listed here soon.</p>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Portfolio</span>
+      <h2>Projects We've Built &amp; Collaborated On</h2>
+      <p>Explore selected digital projects that demonstrate our approach to building functional, modern and user-focused digital experiences.</p>
+    </div>
+    {% if projects %}
+    <div class="grid grid-2">
+      {% for project in projects %}{% include "website/_project_card.html" %}{% endfor %}
+    </div>
+    <div class="btn-row center section-action">
+      <a href="{% url 'website:projects' %}" class="btn btn-outline">View All Projects</a>
+    </div>
+    {% else %}
+    <p class="empty-state">No projects to show yet. Please check back soon.</p>
+    {% endif %}
+  </div>
+</section>
+
+{% include "website/_why_choose.html" %}
+{% include "website/_process.html" %}
+{% include "website/_team.html" %}
+{% include "website/_cta.html" %}
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "website/base.html" %}
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Services</span>
+    <h1>Our Services</h1>
+    <p class="lead">From first website to full web application, we provide the digital services your business needs to grow online.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {% if services %}
+    <div class="grid grid-3">
+      {% for service in services %}{% include "website/_service_card.html" %}{% endfor %}
+    </div>
+    {% else %}
+    <p class="empty-state">Our services will be listed here soon.</p>
+    {% endif %}
+  </div>
+</section>
+
+{% include "website/_process.html" %}
+{% include "website/_cta.html" %}
+
+{% endblock %}

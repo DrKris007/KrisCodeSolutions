@@ -1,0 +1,9 @@
+<article class="card service-card reveal">
+  <div class="service-icon">
+    {% if service.image %}<img src="{{ service.image.url }}" alt="">{% else %}<i class="bi {{ service.icon_class }}" aria-hidden="true"></i>{% endif %}
+  </div>
+  <span class="service-number">{{ forloop.counter|stringformat:"02d" }}</span>
+  <h3>{{ service.title }}</h3>
+  <p>{{ service.description }}</p>
+  <a class="card-link" href="{% url 'website:contact' %}?service={{ service.title|urlencode }}">{{ service.cta_label }} <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+</article>
